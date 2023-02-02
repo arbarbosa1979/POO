@@ -54,5 +54,18 @@
             }
         }
 
+        public void Exibir()
+        {
+            Console.WriteLine("Aro: " + Aro);
+            Console.WriteLine("PercentualBorracha: " + PercentualBorracha);
+            Console.WriteLine("Cor: " + Cor);
+            Console.WriteLine("VelocidadeMaxima: " + VelocidadeMaxima);
+            Console.WriteLine("Estepe: " + Estepe);
+            Console.WriteLine("Estourado: " + Estourado);
+            Console.WriteLine("Tipo: " + Tipo);
+            Console.WriteLine("TWI: " + TWI);
+            Console.WriteLine("VelocidadeAtual: " + VelocidadeAtual);
+        }
+
     }
 }
