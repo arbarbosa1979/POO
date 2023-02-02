@@ -6,18 +6,28 @@ namespace ConsoleAppPrincipal
     {
         static void Main(string[] args)
         {
-            Pneus Pneu1 = new Pneus();
+            Pneus Pneu1 = new Pneus(16, 150, "Carro de Passeio", false);
             Pneu1.Aro = 16;
-            Pneu1.PercentualBorracha = 100;
-            Pneu1.Cor = "Preto";
             Pneu1.VelocidadeMaxima = 100;
             Pneu1.Estepe = false;
-            Pneu1.Estourado = false;
             Pneu1.Tipo = "Carro de passeio";
-            Pneu1.TWI = false;
-            Pneu1.VelocidadeAtual = 0;
+
+
+            Pneus Pneu2 = new Pneus();
+            Pneu2.Aro = 16;
+            Pneu1.VelocidadeMaxima = 70;
+            Pneu1.Estepe = true;
+            Pneu1.Tipo = "Pneu de Estepe";
+
+            Pneu1.Girar(6);
+            Pneu2.Girar(6);
+            Pneu2.Girar(6);
+            Pneu2.Girar(6);
+            Pneu2.Frear(5);
 
             Pneu1.Exibir();
+
+            Pneu2.Exibir();
 
         }
     }

@@ -20,6 +20,20 @@
 
         public bool Estepe { get; set; }
 
+        public Pneus(int _aro, int _velocidadeMaxima, string _tipo, bool _estepe)
+        {
+            Aro = _aro;
+            VelocidadeMaxima = _velocidadeMaxima;   
+            Tipo = _tipo;
+            Estepe = _estepe;   
+
+            VelocidadeAtual = 0;
+            Estourado = false;
+            TWI = false;
+            Cor = "Preto";
+            PercentualBorracha = 100; 
+        }
+
 
         public void Girar(int _velocidade)
         { 
