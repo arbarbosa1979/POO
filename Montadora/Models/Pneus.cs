@@ -20,7 +20,7 @@
 
         public bool Estepe { get; set; }
 
-        public Pneus(int _aro, int _velocidadeMaxima, string _tipo, bool _estepe)
+        public Pneus(int _aro, int _velocidadeMaxima, string _tipo, bool _estepe = false)
         {
             Aro = _aro;
             VelocidadeMaxima = _velocidadeMaxima;   
