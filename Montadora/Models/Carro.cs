@@ -132,10 +132,8 @@
                     return;
             }
 
-            if (NivelCombustivel < 100)
-                NivelCombustivel = NivelCombustivel + _quantidadeCombustivel;
+            NivelCombustivel = NivelCombustivel + _quantidadeCombustivel;
         }
-
         public void Exibir()
         {
             Console.Clear();
