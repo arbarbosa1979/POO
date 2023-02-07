@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Models
+﻿namespace Models
 {
     public class Carro
     {
@@ -41,9 +35,114 @@ namespace Models
             PneuEstepe = new Pneus(16, 70, "Estepe", true);
 
         }
-        
 
-        
+        public void Ligar()
+        {
+            if (NivelCombustivel > 0)
+            {
+                NivelCombustivel = NivelCombustivel - 3;    
+                Ligado = true;
+
+                if (NivelCombustivel <= 0)
+                {
+                    NivelCombustivel = 0;
+                    Desligar();
+                }
+            }
+        }
+
+        public void Desligar()
+        {
+            Ligado = false;
+            Parar();
+        }
+
+        public void Acelerar(int _impulso)
+        {
+            if (Ligado == true && _impulso > 0) 
+            {
+                Odometro += 18;
+                NivelCombustivel = NivelCombustivel - 8;
+                VelocidadeAtual = VelocidadeAtual + _impulso;
+                PneuDianteiroDir.Girar(_impulso);
+                PneuDianteiroEsq.Girar(_impulso);
+                PneuTraseiroDir.Girar(_impulso);
+                PneuTraseiroEsq.Girar(_impulso);
+            }
+
+        }
+
+        public void Parar()
+        {
+            VelocidadeAtual = 0;
+            PneuDianteiroDir.VelocidadeAtual = 0;
+            PneuDianteiroEsq.VelocidadeAtual = 0;
+            PneuTraseiroDir.VelocidadeAtual = 0;
+            PneuTraseiroEsq.VelocidadeAtual = 0;
+        }
+        public void Frear(int _reduzir)
+        {
+            VelocidadeAtual = VelocidadeAtual - _reduzir;
+
+            if (VelocidadeAtual < 0)
+                VelocidadeAtual = 0; 
+
+            PneuDianteiroDir.Frear(_reduzir);
+            PneuDianteiroEsq.Frear(_reduzir);
+            PneuTraseiroDir.Frear(_reduzir); 
+            PneuTraseiroEsq.Frear(_reduzir);
+        }
+        /// <summary>
+        /// Este método vai abastecer o carro
+        /// </summary>
+        /// <param name="_quantidadeCombustivel">Informe o percentual de combustível que deseja abastecer, caso informe
+        /// 0 o método irá completar o tanque. O valor não pode ser superior a 100</param>
+        public void Abastecer(int _quantidadeCombustivel = 0)
+        {
+            if (_quantidadeCombustivel == 0)
+                _quantidadeCombustivel = 100 - NivelCombustivel;
+
+            if (NivelCombustivel + _quantidadeCombustivel > 100)
+            {
+                Console.WriteLine("A quantidade de combustível ultrapassa o limite do tanque");
+                    return;
+            }
+
+            if (NivelCombustivel < 100)
+                NivelCombustivel = NivelCombustivel + _quantidadeCombustivel;
+        }
+
+        public void Exibir()
+        {
+            Console.Clear();
+
+            Console.WriteLine("Fabricante: " + Fabricante);
+            Console.WriteLine("Ano: " + Ano);
+            Console.WriteLine("Modelo: " + Modelo);
+            Console.WriteLine("Cor: " + Cor);
+            Console.WriteLine("Odometro: " + Odometro);
+            Console.WriteLine("Placa: " + Placa);
+            Console.WriteLine("Combustivel: " + Combustivel);
+            Console.WriteLine("Especie: " + Especie);
+            Console.WriteLine("Tipo: " + Tipo);
+            Console.WriteLine("QtdPassageiros: " + QtdPassageiros);
+            Console.WriteLine("VelocidadeMaxima: " + VelocidadeMaxima);
+            Console.WriteLine("VelocidadeAtual: " + VelocidadeAtual);
+            Console.WriteLine("NivelCombustivel: " + NivelCombustivel);
+            Console.WriteLine("Ligado: " + Ligado);
+
+            Console.WriteLine(" PneuDianteiroEsq");
+            PneuDianteiroEsq.Exibir();
+            Console.WriteLine("PneuDianteiroDir");
+            PneuDianteiroDir.Exibir();
+            Console.WriteLine("PneuTraseiroEsq");
+            PneuTraseiroEsq.Exibir();
+            Console.WriteLine("PneuTraseiroDir");
+            PneuTraseiroDir.Exibir();
+            Console.WriteLine("PneuEstepe");
+            PneuEstepe.Exibir();
+
+        }
 
     }
 }
