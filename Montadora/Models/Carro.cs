@@ -120,6 +120,7 @@
         /// </summary>
         /// <param name="_quantidadeCombustivel">Informe o percentual de combustível que deseja abastecer, caso informe
         /// 0 o método irá completar o tanque. O valor não pode ser superior a 100</param>
+        ///<example>Abastecer(10)</example>
         public void Abastecer(int _quantidadeCombustivel = 0)
         {
             if (_quantidadeCombustivel == 0)
