@@ -22,8 +22,19 @@
         public Pneus PneuTraseiroDir { get; set; }
         public Pneus PneuEstepe { get; set; }
 
-        public Carro(string _fabricante, int _ano, string _modelo, string _cor, string _placa, string _combustivel, string _especie, string _tipo, int _passageiros)
+        public Carro(string _fabricante, int _ano, string _modelo, string _cor, string _placa, string _combustivel, string _especie, string _tipo, int _passageiros, int _velocidamaxima)
         {
+            Fabricante = _fabricante;
+            Ano = _ano;
+            Modelo = _modelo;
+            Cor = _cor;
+            Placa = _placa;
+            Combustivel = _combustivel; 
+            Especie = _especie;
+            Tipo = _tipo;   
+            QtdPassageiros = _passageiros;
+            VelocidadeMaxima = _velocidamaxima;
+            VelocidadeAtual = 0;
             Odometro = 0;
             Ligado = false;
             NivelCombustivel = 0;
@@ -63,11 +74,23 @@
             {
                 Odometro += 18;
                 NivelCombustivel = NivelCombustivel - 8;
+
+                if (NivelCombustivel <= 0)
+                {
+                    NivelCombustivel = 0;
+                    Desligar();
+                    return;
+                }
+
                 VelocidadeAtual = VelocidadeAtual + _impulso;
                 PneuDianteiroDir.Girar(_impulso);
                 PneuDianteiroEsq.Girar(_impulso);
                 PneuTraseiroDir.Girar(_impulso);
                 PneuTraseiroEsq.Girar(_impulso);
+                if (PneuDianteiroDir.Estourado || PneuDianteiroEsq.Estourado || PneuTraseiroDir.Estourado || PneuTraseiroEsq.Estourado)
+                {
+                    Parar();
+                }
             }
 
         }
@@ -131,15 +154,15 @@
             Console.WriteLine("NivelCombustivel: " + NivelCombustivel);
             Console.WriteLine("Ligado: " + Ligado);
 
-            Console.WriteLine(" PneuDianteiroEsq");
+            Console.WriteLine("\nPneuDianteiroEsq");
             PneuDianteiroEsq.Exibir();
-            Console.WriteLine("PneuDianteiroDir");
+            Console.WriteLine("\nPneuDianteiroDir");
             PneuDianteiroDir.Exibir();
-            Console.WriteLine("PneuTraseiroEsq");
+            Console.WriteLine("\nPneuTraseiroEsq");
             PneuTraseiroEsq.Exibir();
-            Console.WriteLine("PneuTraseiroDir");
+            Console.WriteLine("\nPneuTraseiroDir");
             PneuTraseiroDir.Exibir();
-            Console.WriteLine("PneuEstepe");
+            Console.WriteLine("\nPneuEstepe");
             PneuEstepe.Exibir();
 
         }
